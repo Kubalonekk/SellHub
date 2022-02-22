@@ -1,0 +1,38 @@
+
+{% load crispy_forms_tags %}
+
+<form method="get" class="row g-2">
+    <div style="display: none;"" class="col-md-2">
+        {{ myFilter.form.marka| as_crispy_field }}
+    </div>
+    <div class="col-md-2">
+        {{ myFilter.form.model| as_crispy_field }}
+    </div>
+    <div class="col-md-2">
+        {{ myFilter.form.paliwo| as_crispy_field }}
+    </div>
+    <div class="col-md-2">
+        {{ myFilter.form.nadwozie| as_crispy_field }}
+    </div>
+    <div class="col-md-3">
+        {{ myFilter.form.stan_techniczny| as_crispy_field }}
+    </div>
+    <div class="col-md-3">
+        {{ myFilter.form.skrzynia_biegow| as_crispy_field }}
+    </div>
+    <div class="col-md-3">
+        {{ myFilter.form.cena__gt| as_crispy_field }}
+    </div>
+    <div class="col-md-3">
+        {{ myFilter.form.cena__lt| as_crispy_field }}
+    </div>
+    <div class="col-md-3">
+        {{ myFilter.form.rok_produkcji__gt| as_crispy_field }}
+    </div>
+    <div class="col-md-3">
+        {{ myFilter.form.rok_produkcji__lt| as_crispy_field }}
+    </div>
+
+
+        <button type="submit" class="btn btn-primary my-2">Szukaj</button>
+    </form>

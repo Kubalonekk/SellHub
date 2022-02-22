@@ -1,0 +1,30 @@
+
+
+{% if request.user.is_authenticated %}
+<div class="container">
+  {% if messages %}
+  <ul class="messages">
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }}" role="alert">
+  {{ message }}
+  </div>
+  {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+
+{% if flaga == True %} 
+<a style="color: #DC143C; text-decoration: none; cursor: pointer;"
+  hx-put="{% url 'dodaj_lub_usun_ulubione' ogloszenie.id %}"
+  hx-trigger="click"
+  
+  hx-target="#dodaj_lub_usun_ulubione"><i class="fas fa-heart fa-2x" style="float: right;"></i></a>
+{% else %}
+<a style="color: black; text-decoration: none; cursor: pointer;"
+  hx-put="{% url 'dodaj_lub_usun_ulubione' ogloszenie.id %}"
+  hx-trigger="click"
+  hx-target="#dodaj_lub_usun_ulubione"><i class="far fa-heart fa-2x " style="float: right;"></i></a>
+{% endif %}
+{% else %}
+<a href="{% url 'logowanie'  %}" style="color: black; text-decoration: none; cursor: pointer;"><i class="far fa-heart fa-2x " style="float: right;"></i></a>
+{% endif %}

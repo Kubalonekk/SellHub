@@ -1,0 +1,72 @@
+
+{% load static %}
+
+{% block content %}
+
+
+<nav class="navbar navbar-dark bg-dark navbar-expand-md bg-faded justify-content-center">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <!-- <img src="{% static 'images/pic.jpg' %}" alt="" width="30" height="24" class="rounded-circle d-inline-block align-text-top"> -->
+            SellHub
+          </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsingNavbar3">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+            <ul class="navbar-nav w-100 justify-content-center">
+                <!-- <li class="nav-item active">
+                    <a class="nav-link" href="#">Link</a>
+                </li> -->
+                <li class="nav-item">
+                    <a href="{% url 'dodaj_ogloszenie' %}"><button type="button" class="btn btn-outline-info">Dodaj ogłoszenie</button></a>
+                </li>
+                <li class="nav-item">
+                    
+                </li>
+            </ul>
+            <ul class="nav navbar-nav ms-auto w-100 justify-content-end">
+              {% if user.is_authenticated %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Twój profil
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'twoje_ogloszenia' %}">Twoje ogłoszenia</a></li>
+                  <li><a class="dropdown-item" href="{% url 'ulubione' %}">Ulubione</a></li>
+                  <li><a class="dropdown-item" href="{% url 'edytuj_profil' %}">Edytuj profil</a></li>
+                 
+                  <li><hr class="dropdown-divider"></li>
+                  <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                </ul>
+              </li>
+                <li class="nav-item">
+                    <a href="{% url 'wylogowanie' %}"> <button type="button"class="btn btn-outline-success ms-2">Wyloguj</button></a>
+                </li>
+              {% else %}
+              <li class="nav-item">
+                <a href="{% url 'logowanie' %}"><button type="button" class="btn btn-outline-primary">Zaloguj</button></a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'rejestracja' %}"><button type="button" class="btn btn-outline-success ms-2">Zarejestruj</button></a>
+            </li>
+            {% endif %}
+              <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Menu </a>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item" href="#">Item</a></li>
+                        <li><a class="dropdown-item" href="#">Item</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Item</a></li>
+                    </ul>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+{% endblock %}
+

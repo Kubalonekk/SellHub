@@ -1,0 +1,120 @@
+{% extends 'SellHub/base.html' %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="container">
+  
+
+    <!-- Portfolio Item Heading -->
+    <h1 class="my-4">
+        {{ogloszenie.tytul}}
+    </h1>
+  
+    <!-- Portfolio Item Row -->
+    <div class="row">
+  
+      <div class="col-md-8">
+        <div class="popup-gallery">
+        {% for zdjecie in ogloszenie.zdjecie_ogloszenie.all %}
+        {% if zdjecie.zdjecie_glowne == True %}
+        <a class="image-popup-vertical-fit" href="{{zdjecie.zdjecie.url}}">
+            <img class="img-fluid rounded img-thumbnail" src="{{zdjecie.zdjecie.url}}" alt="">
+        </a>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+      <div class="col-md-4">  
+        <div id="dodaj_lub_usun_ulubione">
+          {% include 'SellHub/partials/dodaj_lub_usun_ulubione.html '%}
+        </div>
+        <h3 class="my-3 ms-5">Cena: {{ogloszenie.cena}} zł</h3>
+        <h3 class="my-3 ms-5">Szczegóły auta</h3>
+        <ul>
+          <li class="list-group-item">Marka: {{ogloszenie.marka}}</li>
+          <li class="list-group-item">Model: {{ogloszenie.model}}</li>
+          <li class="list-group-item">Rok produkcji: {{ogloszenie.rok_produkcji | date:"Y" }}</li>
+          <li class="list-group-item">Paliwo: {{ogloszenie.paliwo}}</li>
+          <li class="list-group-item">Pojemność silnika: {{ogloszenie.pojemnosc_silnika}} cm³</li>
+          <li class="list-group-item">Moc silnika: {{ogloszenie.moc_silinka}} km</li>
+          <li class="list-group-item">Nadwozie: {{ogloszenie.nadwozie}}</li>
+          <li class="list-group-item">Przebieg: {{ogloszenie.przebieg}} km</li>
+          <li class="list-group-item">Stan techniczny: {{ogloszenie.stan_techniczny}}</li>
+          <li class="list-group-item">Skrzynia biegów: {{ogloszenie.skrzynia_biegow}}</li>
+        </ul>
+        
+      </div>
+  
+    </div>
+    <!-- /.row -->
+  
+    <!-- Related Projects Row -->
+    <h3 class="my-4">Pozostałe zdjęcia</h3>
+    <div class="popup-gallery">
+    <div class="row">
+        {% for zdjecie in zdjecia_ogloszenie %}
+      <div class="col-md-3 col-sm-6 mb-4">
+        <a class="image-popup-vertical-fit" href="{{zdjecie.zdjecie.url}}" >
+              <img class="img-fluid rounded img-thumbnail " src="{{zdjecie.zdjecie.url}}" alt="">
+            </a>
+      </div>
+      {% endfor %}
+    </div>
+    </div>
+    <!-- /.row -->
+  
+    <h3 class="my-4">Opis</h3>
+
+      <li class="list-group-item">{{ogloszenie.opis| linebreaks}}</li>
+
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-left align-items-center h-100">
+        <div class="col-8">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-4">
+              <div class="d-flex text-black">
+                <div class="flex-shrink-0">
+                  <img
+                    src="{% static 'images/user.jpg' %}"
+                    alt="Generic placeholder image"
+                    class="img-fluid"
+                    style="width: 180px; border-radius: 10px;"
+                  />
+                </div>
+                <div class="flex-grow-1 ms-3">
+                  <h5 class="mb-1">{{ ogloszenie.ogloszenie_uzytkownika.imie }} {{ ogloszenie.ogloszenie_uzytkownika.nazwisko }}</h5>
+                  <p class="mb-2 pb-1" style="color: #2b2a2a;">
+                    <p></p>
+                  </p>
+                  <div
+                    class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                    style="background-color: #efefef;"
+                  >
+                    <div>
+                      <p class="small text-muted mb-1">
+                        Numer telefonu:
+                      </p>
+                      <p class="mb-0">{{ ogloszenie.ogloszenie_uzytkownika.numer_telefonu }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>
+        <small>Wyświetlenia ogłoszenia: {{ ogloszenie.wyswietlenia }}</small>
+      </p>
+    </div>
+  </div>
+  
+
+{% endblock %}
+
+
+

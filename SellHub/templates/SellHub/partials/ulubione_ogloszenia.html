@@ -1,0 +1,39 @@
+
+<div class="container">
+  {% if messages %}
+  <ul class="messages">
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }}" role="alert">
+  {{ message }}
+  </div>
+  {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+
+<span></span>
+<table class="table mt-3">
+    <table class="table table-striped table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tytuł</th>
+            <th scope="col">Data dodania</th>
+            <th scope="col">link</th>
+          </tr>
+        </thead>
+        
+          <tbody>
+            {% for ulubione_ogloszenie  in ulubione_ogloszenia %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ ulubione_ogloszenie.tytul| truncatechars:40 }}</td>
+                <td>{{ ulubione_ogloszenie.data_dodania }}</td>
+                <td><a href="{% url 'pojedyncze_ogloszenie' ulubione_ogloszenie.pk %}"><button type="button" class="btn btn-outline-primary btn-sm">Otwórz</button></a>
+                <button type="button" hx-delete="{% url 'usun_z_ulubionych' ulubione_ogloszenie.pk %}" hx-confirm="Napewno chcesz usunąć ogłoszenie z ulubionych?" hx-target="#ulubione_ogloszenia" class="btn btn-outline-danger btn-sm ms-2">Usuń z obserwowanych</button>
+                </td>
+              </tr>
+              {% endfor %}
+        </tbody>
+        </div>
+        </div>

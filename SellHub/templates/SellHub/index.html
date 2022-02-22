@@ -1,0 +1,54 @@
+{% extends 'SellHub/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+
+{% block content %}
+
+
+<div class="container">
+    <div class="col-md-4">
+    <select class="form-control"
+            name="marka" 
+            hx-get="{% url 'ogloszenie' %}"
+            hx-trigger="click"
+            hx-target="#OgloszenieForm">
+            <option value="reset" selected>Wybierz marke</option>
+            {% for marka in marki %}
+            <option value="{{ marka.pk }}">{{marka.nazwa}}</option>
+            {% endfor %}
+    </select>
+    </div>
+    
+    <div id="OgloszenieForm">
+
+        {% include 'SellHub/partials/OgloszenieForm.html' %}
+
+    </div>
+    <div class="row row-cols-2 row-cols-md-3 g-4">
+        {% for ogloszenie in ogloszenia %}
+        <div class="col">
+        <div class="card h-100">
+            {% for zdjecie in ogloszenie.zdjecie_ogloszenie.all %}
+            {% if zdjecie.zdjecie_glowne == True %}
+            <a href="{% url 'pojedyncze_ogloszenie' ogloszenie.id %}"><img src="{{zdjecie.zdjecie.url}}" class="card-img-top" alt=""/></a>
+            {% else %} 
+            {% endif %}
+            {%endfor%}
+            <div class="card-body">
+            <h5 class="card-title">{{ ogloszenie.tytul }}<p class="font-weight-bold">{{ ogloszenie.cena }}zł</p></h5>
+            <p class="card-text">
+               
+            </div>
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+

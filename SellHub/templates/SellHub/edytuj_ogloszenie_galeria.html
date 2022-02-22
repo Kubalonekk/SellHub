@@ -1,0 +1,55 @@
+{% extends 'SellHub/base.html' %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+		<table class="table table-image">
+		  <thead>
+		    <tr>
+		      <th scope="col"></th>
+		      <th scope="col">Zdjęcie</th>
+		      <th scope="col"></th>
+		      <th scope="col">Główne</th>
+		      <th scope="col">Usuń</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+        {% for zdjecie in zdjecia_ogloszenie %}
+		    <tr>
+		      <th scope="row">{{ forloop.counter }}</th>
+		      <td class="w-25">
+			      <img src="{{zdjecie.zdjecie.url}}" class="img-fluid img-thumbnail" alt="Sheep">
+		      </td>
+		      <td>Przyciskiem po prawej można ustawić zdjęcie jako główne</td>
+          {% if zdjecie.zdjecie_glowne == True %}
+          <td>Główne zdjęcie</td>
+          {% else %}
+		      <td><a href="{% url 'ustaw_glowne_zdjecie' zdjecie.id %}"><button type="button" class="btn btn-outline-primary ">Ustaw jako główne</button></a></td>
+		      <td><a href="{% url 'usun_zdjecie' zdjecie.id %}"><button type="button" class="btn btn-outline-danger ">Usuń</button></a></td>
+          {% endif %}
+		    </tr>
+        {% endfor %}
+		  </tbody>
+		</table>   
+    </div>
+  </div>
+  <h1 class="mt-3">Dodaj zdjęcia:</h1>
+  <form method="POST"enctype="multipart/form-data" class="row g-2">
+	  {% csrf_token %}
+	<div class="input-group">
+	<input required name="zdjecia" type="file" multiple class="form-control-file">
+	<div class="col-12 mt-3">
+		<button type="submit" class="btn btn-primary">Dodaj zdjęcia</button>
+	  </div>
+	</form>
+
+</div>
+
+
+{% endblock %}
+

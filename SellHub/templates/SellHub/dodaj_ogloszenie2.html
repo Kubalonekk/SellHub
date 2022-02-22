@@ -1,0 +1,79 @@
+{% extends 'SellHub/base.html' %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+
+{% block content %}
+<div class="container mt-5">
+    <form method="POST"enctype="multipart/form-data" class="row g-2">
+        {% csrf_token %}
+        <div class="col-md-6">
+        {{ form.tytul| as_crispy_field}}
+        </div>
+        <div class="col-md-3">
+        {{ form.model| as_crispy_field}}
+        </div>
+        <div class="col-3">
+        {{ form.cena | as_crispy_field}}
+          </div>
+        <div class="col-12">
+            
+            {{ form.opis| as_crispy_field}} 
+        </div>
+        <div class="col-3">
+            {{ form.rok_produkcji| as_crispy_field}} 
+        </div>
+        <div class="col-3">
+            {{ form.moc_silinka| as_crispy_field}} 
+          </div>
+          <div class="col-2">
+            
+            {{ form.pojemnosc_silnika| as_crispy_field}}
+        </div>  
+        <div class="col-2">
+            {{ form.negocjacja| as_crispy_field }}
+        </div>
+        <div class="col-2">
+            {{ form.przebieg| as_crispy_field}}
+        </div>
+        <div class="col-3"> 
+            {{ form.nadwozie| as_crispy_field}}
+        </div>
+        <div class="col-3"> 
+            {{ form.paliwo | as_crispy_field}}
+        </div>
+        <div class="col-3">
+            {{ form.skrzynia_biegow | as_crispy_field}}
+        </div>
+        <div class="col-3">
+            {{ form.stan_techniczny | as_crispy_field}}
+        </div>
+        <div class="col-3">
+        <label>Wybierz zdjęcie główne</label>
+        <input required name="glowne" type="file" class="form-control-file">
+        </div>
+
+        <label>Wybierz reszte zdjęć</label>
+        <div class="input-group">
+            <input required name="zdjecia" type="file" multiple class="form-control-file">
+        </div>
+    
+        <!-- <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+              Check me out
+            </label>
+          </div>
+        </div> -->
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Dodaj ogłoszenie</button>
+        </div>
+      </form>
+    </div>
+
+<!-- <input required name="zdjecia" type="file" multiple class="form-control-file"> -->
+
+{% endblock %}
+

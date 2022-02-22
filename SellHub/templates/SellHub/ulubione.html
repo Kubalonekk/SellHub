@@ -1,0 +1,23 @@
+{% extends 'SellHub/base.html' %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+  <h1 class="display-4">Ulubione ogłoszenia</h1>
+  <div id="ulubione_ogloszenia">
+  {% include 'SellHub/partials/ulubione_ogloszenia.html' %}
+  </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
